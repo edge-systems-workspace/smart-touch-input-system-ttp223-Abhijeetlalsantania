@@ -2,43 +2,31 @@
 /**
  * @file main.ino
  * @brief Embedded Touch Detection System using TTP223
- * @author YOUR_NAME
- * @date YYYY-MM-DD
+ * @author Abhijeet Lalsantania
+ * @date 21-02-2026
  *
  * @details
  * Reads digital touch input from TTP223 sensor
  * and displays structured output via Serial Monitor.
  */
 
- // TODO 1:
- // Define touch sensor digital pin (Use pin 2)
-
- // TODO 2:
- // Create variable to store touch state
+const uint8_t touchPin = 2;
+int touchState = 0;
 
 void setup() {
-
-    // TODO 3:
-    // Initialize Serial communication (9600 baud rate)
-
-    // TODO 4:
-    // Configure touch pin as INPUT
-
-    // TODO 5:
-    // Print system initialization message
+    Serial.begin(9600);
+    pinMode(touchPin, INPUT);
+    Serial.println("=== TTP223 Touch Detection System Initialized ===");
 }
 
 void loop() {
+ 
+    touchState = digitalRead(touchPin);
 
-    // TODO 6:
-    // Read digital value from touch sensor
-
-    // TODO 7:
-    // If touch detected (HIGH)
-    //     Print "Touch Detected"
-    // Else
-    //     Print "No Touch"
-
-    // TODO 8:
-    // Add small delay (200–500ms)
+    if(touchState == HIGH){
+        Serial.println("Touch Detected");
+    }else{
+        Serial.println("No Touch");
+    }
+    delay(300);
 }
